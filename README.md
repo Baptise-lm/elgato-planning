@@ -13,10 +13,11 @@ Ce projet est une application de planning mensuel basée sur le modèle MVC (Mod
 ## Installation
 
 1. **Cloner le dépôt** :
-   ```bash
-   git clone https://github.com/votre_utilisateur/planning_mvc.git
-   cd planning_mvc
-   ```
+
+```bash
+git clone https://github.com/votre_utilisateur/planning_mvc.git
+cd planning_mvc
+```
 
 ````
 
