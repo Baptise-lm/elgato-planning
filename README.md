@@ -95,7 +95,3 @@ planning_mvc/
 2. Modifier un événement : Utilisez le formulaire intégré dans chaque événement pour le modifier.
 3. Supprimer un événement : Utilisez le bouton "Supprimer" intégré dans chaque événement.
 4. Déplacer un événement : Utilisez le drag-and-drop pour déplacer les événements entre les jours du calendrier.
-
-```
-
-```
