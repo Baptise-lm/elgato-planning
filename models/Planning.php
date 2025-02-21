@@ -1,5 +1,10 @@
 <?php
-require_once 'config.php';
+
+/**
+ * Modèle Planning
+ *
+ * Ce fichier contient la logique de la base de données et les opérations CRUD.
+ */
 
 class Planning
 {
@@ -23,16 +28,6 @@ class Planning
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute(['date' => $date]);
     return $stmt->fetchAll();
-  }
-
-  public function getWeekEvents($startDate)
-  {
-    $weekEvents = [];
-    for ($i = 0; $i < 7; $i++) {
-      $date = date('Y-m-d', strtotime($startDate . ' + ' . $i . ' days'));
-      $weekEvents[$date] = $this->getEvents($date);
-    }
-    return $weekEvents;
   }
 
   public function getMonthEvents($startDate)
