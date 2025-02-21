@@ -57,25 +57,21 @@ try {
 Le projet est organisé en suivant le modèle MVC (Model-View-Controller).
 
 planning_mvc/
-│
-├── config.php
-├── index.php
-│
-├── controllers/
-│ ├── Controller.php
-│ └── UpdateController.php
-│
-├── models/
-│ └── Planning.php
-│
-├── views/
-│ └── Accueil.php
-│
-├── css/
-│ └── style.css
-│
-└── js/
-└── script.js
+
+- **config.php**
+- **index.php**
+- **controllers/**
+  - Controller.php
+  - UpdateController.php
+- **models/**
+  - Planning.php
+- **views/**
+  - Accueil.php
+- **css/**
+  - style.css
+- **js/**
+
+  - script.js
 
 - config.php : Configuration de la base de données.
 - controllers/Controller.php : Contrôleur principal pour gérer les requêtes utilisateur.
