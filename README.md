@@ -19,12 +19,18 @@ git clone https://github.com/votre_utilisateur/planning_mvc.git
 cd planning_mvc
 ```
 
-````
-
 2. **Installer les dépendances** :
 
 Assurez-vous d'avoir PHP et MySQL installés sur votre machine.
 Configurez votre serveur web (Apache, Nginx, etc.) pour servir le projet.
+
+Installer Sortable JS :
+
+```
+npm install sortablejs --save
+```
+
+lien de sortable js : [https://github.com/SortableJS/Sortable]
 
 3. **Configurer la base de données** :
 
@@ -93,4 +99,7 @@ planning_mvc/
 2. Modifier un événement : Utilisez le formulaire intégré dans chaque événement pour le modifier.
 3. Supprimer un événement : Utilisez le bouton "Supprimer" intégré dans chaque événement.
 4. Déplacer un événement : Utilisez le drag-and-drop pour déplacer les événements entre les jours du calendrier.
-````
+
+```
+
+```
