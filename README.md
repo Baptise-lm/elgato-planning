@@ -1,96 +1,95 @@
-# Gestion de Planning Hebdomadaire
+# Planning Mensuel MVC
 
-Ce projet est une application web de gestion de planning hebdomadaire en PHP avec une base de données MySQL. Il permet d'ajouter, modifier, supprimer des tâches et de naviguer de semaine en semaine.
+Ce projet est une application de planning mensuel basée sur le modèle MVC (Model-View-Controller). Il permet de gérer des événements sur un calendrier mensuel avec des fonctionnalités de création, de mise à jour, de suppression et de drag-and-drop des événements.
 
-## Prérequis
+## Table des Matières
 
-- PHP 7.4 ou supérieur
-- MySQL 5.7 ou supérieur
-- Serveur web (Apache, Nginx, etc.)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Structure du Projet](#structure-du-projet)
+- [Fonctionnalités](#fonctionnalités)
+- [Utilisation](#utilisation)
 
 ## Installation
 
-1. **Cloner le dépôt**
-
+1. **Cloner le dépôt** :
    ```bash
-   git clone https://github.com/votre-utilisateur/planning-hebdomadaire.git
-   cd planning-hebdomadaire
-
+   git clone https://github.com/votre_utilisateur/planning_mvc.git
+   cd planning_mvc
    ```
 
-2. **Configurer la base de données**
+````
 
-Créez une base de données MySQL et importez le fichier database.sql pour créer la table des tâches.
+2. **Installer les dépendances** :
 
-```
-CREATE DATABASE planning_db;
-USE planning_db;
-CREATE TABLE tasks (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    date DATE NOT NULL,
-    event VARCHAR(255) NOT NULL
-);
-```
+Assurez-vous d'avoir PHP et MySQL installés sur votre machine.
+Configurez votre serveur web (Apache, Nginx, etc.) pour servir le projet.
 
-3. **Configurer la connexion à la base de données**
+3. **Configurer la base de données** :
 
-Mettez à jour le fichier config.php avec vos informations de connexion à la base de données.
+Créez une base de données MySQL et importez le fichier SQL fourni dans le dossier sql pour créer les tables nécessaires.
+
+## Configuration
+
+1. **Configurer la connexion à la base de données** :
+   Ouvrez le fichier config.php et modifiez les paramètres de connexion à la base de données.
 
 ```
-<?php
-\$host = 'localhost';
-\$db = 'planning_db';
-\$user = 'root';
-\$pass = '';
-\$charset = 'utf8mb4';
-
-\$dsn = "mysql\:host=\$host;dbname=\$db;charset=\$charset";
-\$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
+define('BASE_URL', '/votre_projet/'); // Définissez l'URL de base de votre projet
 
 try {
-    \$pdo = new PDO(\$dsn, \$user, \$pass, \$options);
-} catch (\PDOException \$e) {
-    throw new \PDOException(\$e->getMessage(), (int)\$e->getCode());
+    $pdo = new PDO('mysql:host=localhost;dbname=votre_base_de_donnees', 'votre_utilisateur', 'votre_mot_de_passe');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die('Connexion échouée : ' . $e->getMessage());
 }
-?>
 ```
 
-4. **Démarrer le serveur web**
+## Structure du Projet
 
-Placez le projet dans le répertoire de votre serveur web (par exemple, htdocs pour Apache) et démarrez le serveur.
+Le projet est organisé en suivant le modèle MVC (Model-View-Controller).
 
-## Structure du projet
+planning_mvc/
+│
+├── config.php
+├── index.php
+│
+├── controllers/
+│ ├── Controller.php
+│ └── UpdateController.php
+│
+├── models/
+│ └── Planning.php
+│
+├── views/
+│ └── Accueil.php
+│
+├── css/
+│ └── style.css
+│
+└── js/
+└── script.js
 
-```
-/planning_app
-    /css
-        style.css
-    /js
-        script.js
-    /classes
-        Planning.php
-    config.php
-    index.php
-```
-
-/css : Contient les fichiers CSS pour le style de l'application.
-/js : Contient les fichiers JavaScript (actuellement vide, mais peut être utilisé pour ajouter des fonctionnalités JavaScript).
-/classes : Contient la classe Planning pour gérer les tâches.
-config.php : Contient la configuration de la connexion à la base de données.
-index.php : Point d'entrée de l'application, affiche le calendrier hebdomadaire et les formulaires pour le CRUD.
+- config.php : Configuration de la base de données.
+- controllers/Controller.php : Contrôleur principal pour gérer les requêtes utilisateur.
+- controllers/UpdateController.php : Contrôleur pour mettre à jour la date des événements.
+- models/Planning.php : Modèle pour les opérations de la base de données.
+- views/Accueil.php : Vue pour l'affichage du calendrier.
+- css/style.css : Fichier CSS pour le style du calendrier.
+- js/script.js : Fichier JavaScript pour le drag-and-drop des événements.
 
 ## Fonctionnalités
 
-1. Affichage du calendrier hebdomadaire : Affiche les tâches pour chaque jour de la semaine.
-2. Navigation entre les semaines : Permet de naviguer vers la semaine précédente et la semaine suivante.
-3. CRUD pour les tâches : Permet d'ajouter, modifier et supprimer des tâches.
+- Création d'événements : Ajoutez des événements à des dates spécifiques.
+- Mise à jour d'événements : Modifiez les événements existants.
+- Suppression d'événements : Supprimez les événements existants.
+- Drag-and-drop : Déplacez les événements entre les jours du calendrier.
+- Navigation mensuelle : Naviguez entre les mois précédents et suivants.
 
 ## Utilisation
 
-1. Accéder à l'application : Ouvrez votre navigateur et accédez à l'URL de votre serveur web (par exemple, http://localhost/planning_app).
-2. Naviguer entre les semaines : Utilisez les liens "Semaine précédente" et "Semaine suivante" pour naviguer entre les semaines.
-3. Gérer les tâches : Utilisez les formulaires pour ajouter, modifier ou supprimer des tâches.
+1. Ajouter un événement : Utilisez le formulaire en bas de chaque jour pour ajouter un nouvel événement.
+2. Modifier un événement : Utilisez le formulaire intégré dans chaque événement pour le modifier.
+3. Supprimer un événement : Utilisez le bouton "Supprimer" intégré dans chaque événement.
+4. Déplacer un événement : Utilisez le drag-and-drop pour déplacer les événements entre les jours du calendrier.
+````
