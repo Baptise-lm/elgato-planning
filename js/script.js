@@ -11,7 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('Event ID:', eventId);
                 console.log('New Date:', newDate);
                 if (newDate) {
-                    updateEventDate(eventId, newDate);
+                    if (eventId) {
+                        updateEventDate(eventId, newDate, evt.item);
+                    } else {
+                        addPredefinedEventToCalendar(evt.item.textContent, newDate);
+                    }
                 } else {
                     console.error('New Date is null');
                 }
@@ -19,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    function updateEventDate(eventId, newDate) {
+    function updateEventDate(eventId, newDate, eventElement) {
         fetch('controllers/UpdateController.php', {
             method: 'POST',
             headers: {
@@ -31,9 +35,29 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             if (data.success) {
                 console.log('Date mise à jour avec succès');
+                const dateElement = eventElement.querySelector('.day-header span');
+                if (dateElement) {
+                    dateElement.textContent = newDate;
+                }
             } else {
                 console.error('Erreur lors de la mise à jour de la date:', data.message);
             }
+        })
+        .catch(error => console.error('Erreur:', error));
+    }
+
+    function addPredefinedEventToCalendar(eventName, newDate) {
+        fetch('controllers/Controller.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `date=${newDate}&event=${encodeURIComponent(eventName)}&add=`
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Événement ajouté avec succès:', data);
+            // Optionally, update the UI to reflect the new event
         })
         .catch(error => console.error('Erreur:', error));
     }

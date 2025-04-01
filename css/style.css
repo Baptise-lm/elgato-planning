@@ -3,6 +3,9 @@ body {
   background-color: #f8f9fa;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
@@ -41,10 +44,16 @@ h1 {
   color: #555;
 }
 
-.calendar {
+.main-content {
+  display: flex;
+  justify-content: space-between;
   width: 90%;
   max-width: 1200px;
   margin: 20px auto;
+}
+
+.calendar {
+  width: 70%;
   border-collapse: collapse;
   table-layout: fixed;
 }
@@ -86,6 +95,7 @@ h1 {
   padding: 10px;
   margin-bottom: 5px;
   position: relative;
+  cursor: grab;
 }
 
 .event form {
@@ -145,4 +155,32 @@ h1 {
 
 .no-drag form button:hover {
   background-color: #218838;
+}
+
+.predefined-events {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  width: 25%;
+}
+
+.predefined-events h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+#predefined-event-container {
+  min-height: 100px;
+}
+
+#predefined-event-container .event {
+  cursor: grab;
+  background-color: #e9ecef;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
 }

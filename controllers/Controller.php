@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $planning->updateEvent($_POST['id'], $_POST['date'], $_POST['event']);
   } elseif (isset($_POST['delete'])) {
     $planning->deleteEvent($_POST['id']);
+  } elseif (isset($_POST['add_predefined'])) {
+    $planning->addPredefinedEvent($_POST['event']);
   }
   header('Location: ' . BASE_URL . 'index.php?month=' . $_POST['month']);
   exit;
@@ -26,6 +28,7 @@ $nextMonth = clone $currentMonth;
 $nextMonth->modify('+1 month');
 
 $monthEvents = $planning->getMonthEvents($startDate);
+$predefinedEvents = $planning->getPredefinedEvents();
 
 // Inclure la vue
 include __DIR__ . '/../views/Accueil.php';

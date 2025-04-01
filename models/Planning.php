@@ -67,4 +67,18 @@ class Planning
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute(['id' => $id]);
   }
+
+  public function getPredefinedEvents()
+  {
+    $sql = "SELECT * FROM predefined_events";
+    $stmt = $this->pdo->query($sql);
+    return $stmt->fetchAll();
+  }
+
+  public function addPredefinedEvent($event)
+  {
+    $sql = "INSERT INTO predefined_events (event) VALUES (:event)";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute(['event' => $event]);
+  }
 }
