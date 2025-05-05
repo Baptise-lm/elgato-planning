@@ -5,14 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Planning Mensuel</title>
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
   <script defer src="<?php echo BASE_URL; ?>js/script.js"></script>
+  <style type="text/tailwindcss">
+    @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
 </head>
 
 <body>
-  <h1>Planning Mensuel</h1>
-  <div class="navigation">
+  <h1 class="text-3xl font-bold underline text-clifford">Planning Mensuel</h1>
+  <div class="flex justify-between items-center mx-auto my-5 w-4/5 font-bold">
     <span>
       <?php
       $formatter = new IntlDateFormatter(

@@ -1,4 +1,13 @@
 {
+  "name": "elgato-planning",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Baptise-lm/elgato-planning.git",
+  "authors": [
+    "Baptiste Lemoine-Migaud <baptistelmng44@gmail.com>",
+    "Louka Lemonnier <lk.lemonnier@gmail.com>"
+  ],
+  "license": "MIT",
   "dependencies": {
     "sortablejs": "^1.15.6"
   }
