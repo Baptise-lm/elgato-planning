@@ -55,6 +55,7 @@ Si vos identifiants MySQL diffèrent, modifiez-les en conséquence.
 Si vous souhaitez utiliser les dépendances définies dans package.json, installez-les avec npm :
 ```
 npm install
+npm install sortablejs --save
 ```
 
 ## Lancer le projet
