@@ -6,11 +6,14 @@
  * Ce fichier configure la connexion à la base de données et définit l'URL de base du projet.
  */
 
-define('BASE_URL', '/planning-doriane/elgato-planning/'); // Définissez l'URL de base de votre projet
+// Définissez l'URL de base de votre projet
+define('BASE_URL', '/Test_planning/planning_elgato_MVC/');
 
 try {
-  $pdo = new PDO('mysql:host=127.0.0.1;port=8889;dbname=projetDoriane', 'root', 'root');
+  // Connexion à la base de données
+  $pdo = new PDO('mysql:host=localhost;dbname=planning_marlou', 'root', 'root');
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
+  // Gérer les erreurs de connexion
   die('Connexion échouée : ' . $e->getMessage());
 }

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (eventId) {
                         updateEventDate(eventId, newDate, evt.item);
                     } else {
-                        addPredefinedEventToCalendar(evt.item.textContent, newDate);
+                        addPredefinedEventToCalendar(evt.item.textContent.trim(), newDate);
                     }
                 } else {
                     console.error('New Date is null');

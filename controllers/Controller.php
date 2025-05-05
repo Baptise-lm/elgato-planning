@@ -7,13 +7,16 @@ $planning = new Planning($pdo);
 // Gérer les requêtes POST pour le CRUD
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['add'])) {
-    $planning->addEvent($_POST['date'], $_POST['event']);
+    $event = trim($_POST['event']); // Nettoyer les espaces superflus
+    $planning->addEvent($_POST['date'], $event);
   } elseif (isset($_POST['update'])) {
-    $planning->updateEvent($_POST['id'], $_POST['date'], $_POST['event']);
+    $event = trim($_POST['event']); // Nettoyer les espaces superflus
+    $planning->updateEvent($_POST['id'], $_POST['date'], $event);
   } elseif (isset($_POST['delete'])) {
     $planning->deleteEvent($_POST['id']);
   } elseif (isset($_POST['add_predefined'])) {
-    $planning->addPredefinedEvent($_POST['event']);
+    $event = trim($_POST['event']); // Nettoyer les espaces superflus
+    $planning->addPredefinedEvent($event);
   }
   header('Location: ' . BASE_URL . 'index.php?month=' . $_POST['month']);
   exit;

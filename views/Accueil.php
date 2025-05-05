@@ -13,17 +13,13 @@
 <body>
   <h1>Planning Mensuel</h1>
   <div class="navigation">
-    <?php
-    $formatter = new IntlDateFormatter(
-      'fr_FR',
-      IntlDateFormatter::FULL,
-      IntlDateFormatter::NONE,
-      'Europe/Paris',
-      IntlDateFormatter::GREGORIAN,
-      'MMMM yyyy'
-    );
-    ?>
-    <span><?php echo ucfirst($formatter->format($currentMonth)); ?></span>
+    <span>
+      <?php
+      // Utiliser DateTime pour formater la date en français
+      setlocale(LC_TIME, 'fr_FR.UTF-8');
+      echo strftime("%B %Y", $currentMonth->getTimestamp());
+      ?>
+    </span>
     <div class="navigation-container">
       <a href="<?php echo BASE_URL; ?>index.php?month=<?php echo $previousMonth->format('Y-m'); ?>">Mois précédent</a>
       <a href="<?php echo BASE_URL; ?>index.php?month=<?php echo $nextMonth->format('Y-m'); ?>">Mois suivant</a>
@@ -72,7 +68,7 @@
           for ($i = 0; $i < $nbWeeks; $i++): // Maximum 6 semaines dans un mois
           ?>
             <tr>
-              <?php for ($j = 1; $j <= 5; $j++): // Afficher uniquement lundi à vendredi 
+              <?php for ($j = 1; $j <= 5; $j++): // Afficher uniquement lundi à vendredi
               ?>
                 <?php
                 // Calculer la date actuelle
@@ -101,15 +97,21 @@
                       <?php foreach ($monthEvents[$currentDate] as $event): ?>
                         <div class="event" data-id="<?php echo $event['id']; ?>">
                           <?php echo $event['event']; ?>
-                          <form method="POST" style="display:inline;">
+                          <form method="POST">
                             <input type="hidden" name="id" value="<?php echo $event['id']; ?>">
                             <input type="hidden" name="month" value="<?php echo $startDate; ?>">
-                            <button type="submit" name="delete">Supprimer</button>
+                            <button type="submit" name="delete" class="delete-button">
+                              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke="red" d="M3 6H21M5 6V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V6M8 6V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path stroke="red" d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path stroke="red" d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </button>
                           </form>
-                          <form method="POST" style="display:inline;">
+                          <form method="POST" class="submit-date">
                             <input type="hidden" name="id" value="<?php echo $event['id']; ?>">
                             <input type="hidden" name="month" value="<?php echo $startDate; ?>">
-                            <input type="text" name="event" value="<?php echo $event['event']; ?>" required>
+                            <input type="text" name="event" class="tag_task" value="<?php echo $event['event']; ?>" required>
                             <input type="date" name="date" value="<?php echo $event['date']; ?>" required>
                             <button type="submit" name="update">Modifier</button>
                           </form>
@@ -144,11 +146,13 @@
           </div>
         <?php endforeach; ?>
       </div>
-      <form method="POST" action="<?php echo BASE_URL; ?>controllers/Controller.php">
-        <input type="hidden" name="month" value="<?php echo $startDate; ?>">
-        <input type="text" name="event" placeholder="Ajouter un événement prédéfini" required>
-        <button type="submit" name="add_predefined">Ajouter</button>
-      </form>
+      <div class="no-drag" style="margin-top: 10px;">
+        <form method="POST" action="<?php echo BASE_URL; ?>controllers/Controller.php">
+          <input type="hidden" name="month" value="<?php echo $startDate; ?>">
+          <input type="text" name="event" placeholder="Ajouter un événement prédéfini" required>
+          <button type="submit" name="add_predefined" style="background-color:rgb(65, 120, 204);">Ajouter</button>
+        </form>
+      </div>
     </div>
   </div>
 </body>
