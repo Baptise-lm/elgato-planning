@@ -20,7 +20,7 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
    Clonez ce dépôt dans le dossier `htdocs` de MAMP (ou le dossier équivalent pour votre serveur local).
 
    ```bash
-   git clone https://github.com/votre-utilisateur/votre-repo.git
+   git clone https://github.com/Baptise-lm/elgato-planning.git
 
    Configurer la base de données :
    ```
@@ -29,28 +29,16 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 
 Ouvrez MAMP et démarrez les serveurs Apache et MySQL.
 
-Créez une base de données nommée planning_doriane.
+Créez une base de données nommée projetDoriane.
 
-Importez le fichier SQL suivant pour créer les tables nécessaires :
+Importez le fichier SQL suivant pour créer les tables nécessaires : `./bdd/bdd.sql`
 
-```sql
-CREATE TABLE tasks (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  date DATE NOT NULL,
-  event VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE predefined_events (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  event VARCHAR(255) NOT NULL
-);
-```
 3. **Configurer le projet :**
 
 Ouvrez le fichier config.php et vérifiez les informations de connexion à la base de données. Par défaut, les paramètres sont :
 ```php
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=planning_marlou', 'root', 'root');
+$pdo = new PDO('mysql:host=localhost;dbname=nom-de-la-base', 'root', 'root');
 ```
 Si vos identifiants MySQL diffèrent, modifiez-les en conséquence.
 
