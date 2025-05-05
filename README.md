@@ -1,97 +1,66 @@
-# Planning Mensuel MVC
+# Planning PHP MVC
 
-Ce projet est une application de planning mensuel basée sur le modèle MVC (Model-View-Controller). Il permet de gérer des événements sur un calendrier mensuel avec des fonctionnalités de création, de mise à jour, de suppression et de drag-and-drop des événements.
+## Prérequis
 
-## Table des Matières
+Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Structure du Projet](#structure-du-projet)
-- [Fonctionnalités](#fonctionnalités)
-- [Utilisation](#utilisation)
+- [MAMP](https://www.mamp.info/) ou un autre serveur local (comme XAMPP ou WAMP).
+- PHP 7.4 ou supérieur.
+- MySQL.
+- Un navigateur web.
 
 ## Installation
 
-1. **Cloner le dépôt** :
+1. **Cloner le projet :**
 
-```bash
-git clone https://github.com/votre_utilisateur/planning_mvc.git
-cd planning_mvc
+   Clonez ce dépôt dans le dossier `htdocs` de MAMP (ou le dossier équivalent pour votre serveur local).
+
+   ```bash
+   git clone https://github.com/votre-utilisateur/votre-repo.git
+
+   Configurer la base de données :
+   ```
+
+2. **Configurer la base de données :**
+
+Ouvrez MAMP et démarrez les serveurs Apache et MySQL.
+
+Créez une base de données nommée planning_doriane.
+
+Importez le fichier SQL suivant pour créer les tables nécessaires :
+
+```sql
+CREATE TABLE tasks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  date DATE NOT NULL,
+  event VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE predefined_events (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  event VARCHAR(255) NOT NULL
+);
+```
+3. **Configurer le projet :**
+
+Ouvrez le fichier config.php et vérifiez les informations de connexion à la base de données. Par défaut, les paramètres sont :
+```php
+<?php
+$pdo = new PDO('mysql:host=localhost;dbname=planning_marlou', 'root', 'root');
+```
+Si vos identifiants MySQL diffèrent, modifiez-les en conséquence.
+
+4. **Installer les dépendances JavaScript :**
+
+Si vous souhaitez utiliser les dépendances définies dans package.json, installez-les avec npm :
+```
+npm install
 ```
 
-2. **Installer les dépendances** :
+## Lancer le projet
+Démarrez MAMP et assurez-vous que les serveurs Apache et MySQL sont actifs.
 
-Assurez-vous d'avoir PHP et MySQL installés sur votre machine.
-Configurez votre serveur web (Apache, Nginx, etc.) pour servir le projet.
-
-Installer Sortable JS :
-
+Accédez au projet dans votre navigateur en entrant l'URL suivante :
 ```
-npm install sortablejs --save
+http://localhost/Test_planning/planning_elgato_MVC/
 ```
-
-lien de sortable js : [https://github.com/SortableJS/Sortable]
-
-3. **Configurer la base de données** :
-
-Créez une base de données MySQL et importez le fichier SQL fourni dans le dossier sql pour créer les tables nécessaires.
-
-## Configuration
-
-1. **Configurer la connexion à la base de données** :
-   Ouvrez le fichier config.php et modifiez les paramètres de connexion à la base de données.
-
-```
-define('BASE_URL', '/votre_projet/'); // Définissez l'URL de base de votre projet
-
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=votre_base_de_donnees', 'votre_utilisateur', 'votre_mot_de_passe');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die('Connexion échouée : ' . $e->getMessage());
-}
-```
-
-## Structure du Projet
-
-Le projet est organisé en suivant le modèle MVC (Model-View-Controller).
-
-planning_mvc/
-
-- **config.php**
-- **index.php**
-- **controllers/**
-  - Controller.php
-  - UpdateController.php
-- **models/**
-  - Planning.php
-- **views/**
-  - Accueil.php
-- **css/**
-  - style.css
-- **js/**
-
-  - script.js
-
-- config.php : Configuration de la base de données.
-- controllers/Controller.php : Contrôleur principal pour gérer les requêtes utilisateur.
-- controllers/UpdateController.php : Contrôleur pour mettre à jour la date des événements.
-- models/Planning.php : Modèle pour les opérations de la base de données.
-- views/Accueil.php : Vue pour l'affichage du calendrier.
-- css/style.css : Fichier CSS pour le style du calendrier.
-- js/script.js : Fichier JavaScript pour le drag-and-drop des événements.
-
-## Fonctionnalités
-
-- Création d'événements : Ajoutez des événements à des dates spécifiques.
-- Mise à jour d'événements : Modifiez les événements existants.
-- Suppression d'événements : Supprimez les événements existants.
-- Drag-and-drop : Déplacez les événements entre les jours du calendrier.
-- Navigation mensuelle : Naviguez entre les mois précédents et suivants.
-
-## Utilisation
-
-1. Ajouter un événement : Utilisez le formulaire en bas de chaque jour pour ajouter un nouvel événement.
-2. Modifier un événement : Utilisez le formulaire intégré dans chaque événement pour le modifier.
-3. Supprimer un événement : Utilisez le bouton "Supprimer" intégré dans chaque événement.
-4. Déplacer un événement : Utilisez le drag-and-drop pour déplacer les événements entre les jours du calendrier.
