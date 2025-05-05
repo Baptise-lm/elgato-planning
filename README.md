@@ -55,5 +55,5 @@ Démarrez MAMP et assurez-vous que les serveurs Apache et MySQL sont actifs.
 
 Accédez au projet dans votre navigateur en entrant l'URL suivante :
 ```
-http://localhost/Test_planning/planning_elgato_MVC/
+http://localhost/votre/chemin/vers/le/projet
 ```
