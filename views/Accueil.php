@@ -8,16 +8,11 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
   <script defer src="<?php echo BASE_URL; ?>js/script.js"></script>
-  <style type="text/tailwindcss">
-    @theme {
-      --color-clifford: #da373d;
-    }
-  </style>
 </head>
 
 <body class="font-regular bg-[#f8f9fa] m-0 p-0 flex flex-col items-center">
-  <h1 class="text-3xl font-bold underline text-clifford">Planning Mensuel</h1>
-  <div class="flex justify-between items-center mx-auto my-5 w-4/5 font-bold">
+  <h1 class="text-3xl font-bold underline">Planning Mensuel</h1>
+  <div class="flex justify-between items-center mx-auto my-5 w-5/6 font-bold">
     <span>
       <?php
       $formatter = new IntlDateFormatter(
@@ -37,7 +32,7 @@
     </div>
   </div>
 
-  <div class="flex justify-between w-4/5 mx-auto my-4 gap-8">
+  <div class="flex justify-between w-5/6 mx-auto my-4 gap-8">
     <div class="rounded-md overflow-hidden border border-dark-color">
       <table class="w-full border-collapse table-fixed">
         <thead>
