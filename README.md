@@ -1,5 +1,9 @@
 # Planning PHP MVC
 
+## Pourquoi avoir utilisé Tailwind CSS
+
+L'utilisation de Tailwind CSS dans notre projet de calendrier dynamique en PHP avec le modèle MVC permet de développer rapidement des interfaces utilisateurs. De plus, Tailwind CSS s'intègre parfaitement avec les fichiers de vue, permettant une séparation claire des fichiers en modèle MVC.
+
 ## Prérequis
 
 Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
