@@ -21,8 +21,6 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 
    ```bash
    git clone https://github.com/Baptise-lm/elgato-planning.git
-
-   Configurer la base de données :
    ```
 
 2. **Configurer la base de données :**
